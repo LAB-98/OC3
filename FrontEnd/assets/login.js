@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		.catch((err) => {
 			console.log(err);
 		});
-
 	});
 });
 
