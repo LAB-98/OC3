@@ -186,3 +186,67 @@ footer nav ul {
 	margin: 2em
 }
 
+/* --- */
+a {
+	text-decoration: none;
+	color:black;
+   }
+/* --- */
+
+.strong{
+	font-weight: 600;
+}
+#login {
+	margin-bottom: 380px;
+	width: 27%;
+	margin: auto;
+}
+#login > * {
+	text-align: center;
+
+}
+#login h2{
+	font-family: 'Syne';
+	margin-bottom: 20px;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 36px;
+	font-style: normal;
+	text-align: center;
+}
+#login form {
+	margin-top:37px;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 51px;
+	font-size: 1.2em;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+}
+#login input[type="submit"]{
+	font-family: 'Syne';
+	height: 36px;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 17px;
+	margin-bottom: 20px;
+	font-style: normal;
+	text-align: center;
+	cursor:pointer;
+}
+#login label {
+	margin: 2em 0 1em 0;
+}
+#login a {
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	font-style: normal;
+	text-decoration-line: underline;
+	text-align: center;
+}
