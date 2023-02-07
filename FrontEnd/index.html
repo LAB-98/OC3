@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
         <meta name="description" content="">
-		<script src="./assets/app.js"></script>
+				<script src="./assets/index.js"></script>
         <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
@@ -43,23 +43,36 @@
         </article>
     </section>
     <section id="portfolio">
+        <h2>Mes Projets</h2>
+        <button  value="Edit" class="modifier" onclick="get_modale();"><i class="fa fa-edit"></i> Modifier</button>
+        <div id="filterContainer"></div> <!-- censé disparaitre après connexion mais fonctionne pas -->
                 <div class="mesprojets">
-                        <h2>Mes Projets</h2>
-                        <button  value="Edit" class="modifier" onclick="get_modale();"><i class="fa fa-edit"></i> Modifier</button>
+                  <div class="gallery"></div>
                 </div>
-                    <div id="filterContainer">
-                        <button class="filterBtn" data-filter="Tous">Tous</button>
-                        <button class="filterBtn" data-filter="Objets">Objets</button>
-                        <button class="filterBtn" data-filter="Appartements">Appartements</button>
-                        <button class="filterBtn" data-filter="Hôtels & restaurants">Hôtels & restaurants</button>
+                
+            <!-- Modal on main -->
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                      <span class="close" onclick="closemodal();">&times;</span>
+                      <h2 id="modtitre">Galerie</h2>
+                      <form id="modal-form" onchange="checkForm()" oninput="checkForm()">
+                        <div class="modgallery" id="mymodgallery">
+                        
+                        </div>
+                        <hr/>
+                        <center><input type="button" class="submit" value="Ajouter une photo" onclick="showuploader('1');"></center>
+                        <center><input type="button" class="button" value="Supprimer la galerie"></center>		
+                      </form>
                     </div>
-                  
-                <div class="category" id="mycategory">
+        
+                    <!--
+            <div class="category" id="mycategory">
 
-                </div>
-                <div class="gallery" id="mygallery">
+            </div>
+            <div class="gallery" id="mygallery">
 
-                </div>
+            </div>
+          	-->
     </section>
 
     <section id="contact">
@@ -75,6 +88,7 @@
                         <input type="submit" value="Envoyer">
                 </form>
     </section>
+</div>	 
 </main>
 
 <footer>

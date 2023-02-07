@@ -304,54 +304,344 @@ a {
 }
 
 /* MODALE goes here */
+/* The Modal (background) */
+.modal {
+	display: none; 
+	position: fixed; 
+	z-index: 1;
+	padding-top: 10%; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%; 
+	overflow: auto; 
+	background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.3); 
+	border-radius: 10px;
+	max-height: 80vh;
+	overflow:auto;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 43%;
+	overflow-y: auto;
+  }
+  
+  /* The Close Button */
+  .close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  /* The return Button */
+  .return {
+	color: #aaaaaa;
+	float: left;
+	font-size: 28px;
+  }
+  
+  .return:hover,
+  .return:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+  }
+  .modal h1{
+	margin-top:16px;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+	color: #000000;
+  }
+.modal .modgallery {
+	width: 67%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 5px;
+	grid-row-gap: 15px;
+	margin: auto;
+	margin-top: 46px;
+}
+
+.modgallery img {
+	width: 100%;
+}
+.projet{
+	position: relative;
+	display: inline-block;
+}
+
+.projet .delete{
+	color: white;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	background: #000000;
+	border-radius: 2px;
+	height:15px;
+	width:15px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	cursor : pointer;
+	font-size : 9px;
+}
+.modal .editer{
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 14px;
+	cursor: pointer;
+}
+.projet .drag-btn {
+	color: white;
+	position: absolute;
+	right: 22px;
+	top: 5px;
+	background: #000000;
+	border-radius: 2px;
+	height:15px;
+	width:15px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	cursor : pointer;
+	font-size : 9px;
+  }
+  .modal hr{
+	width: 67%;
+	border: 1px solid #B3B3B3;
+	margin-top: 47px;
+  }
+  .modal .submit,input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width:237px;
+	text-align: center;
+	border-radius: 60px ;
+	margin: auto;
+	margin-top: 38px;
+	height: 36px;
+	border: 1px solid #1D6154;
+	cursor: pointer;
+}
+.modal .button{
+	cursor: pointer;
+	background-color: white;
+	margin: auto;
+	text-align: center;
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	width:100%;
+	margin-top: 23px;
+	color: #D65353;
+	border:0px;
+}
+body.no-scroll {
+    overflow: hidden;
+}
+
+#myModal > * {
+	text-align: center;
+
+}
+#myModal h2{
+	font-family: 'Syne';
+	font-style: normal;
+	margin-top: 60px;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 36px;
+	/* equivalent to box height */
+
+	text-align: center;
+}
+.modal-content form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	margin-top:37px;
+}
+#myModal .inputnormal {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #444444;
+	padding: 0px 16px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	height: 51px;
+	border: none;
+}
+#myModal .labelnormal {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #3D3D3D;
+	margin: 2em 0 1em 0;
+}
+#myModal select {
+	border: none;
+	font-family: 'Work Sans';
+	font-style: normal;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border-right: 16px solid transparent;
+	height: 51px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #444444;
+	padding: 0px 16px;
+}
+#myModal .addwork{
+	width:67%;
+}
+#myModal .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+  }
+  
+  #myModal .inputlabel {
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 36px;
+	text-align: center;
+	color: #306685;
+	height: 36px;
+	width: 47%;
+	background: #CBD6DC;
+	border-radius: 50px;
+}
+#myModal .uploader{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+    align-items: center;
+	height: 169px;
+	width: 67%;
+	background: #E8F1F7;
+	border-radius: 3px;
+}
+#myModal form{
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+.modal-content .work_info {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	width: 67%;
+}
+.uploader .imageup{
+	color: #B9C5CC;
+	margin-top: 18px;
+	margin-bottom: 21px;
+	font-size: 58px;
+}
+.imageup:before {
+	display: inline-block;
+	font-family: "FontAwesome"; 
+	content: "\f03e";
+	font-weight:lighter;
+	line-height: 1.2;
+  }
+.uploader .consigne{
+	font-family: 'Work Sans';
+	font-style: normal;
+	text-align: center;
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 12px;
+	color: #444444;
+	margin-top: 7px;
+	margin-bottom: 19px;
+}
+
+
 
 input[type="button"][disabled] {
 	background: #A7A7A7;
-	border: 0px;
 	cursor: not-allowed;
+	border: 0px;
  }
 
 #top-bar {
-	width: 100%; 
-	height: 45px; 
-	background-color:#000; 
-	color: #FFFFFF!important;
 	text-align: center; 
-	position: fixed; 
-	top: 0; 
-	left: 0; 
-	z-index: 13; 
+	position: fixed;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	font-family: 'Work Sans';
 	font-style: normal;
+	width: 100%; 
+	height: 45px; 
+	background-color:#000; 
+	color: #FFFFFF!important; 
+	top: 0; 
+	left: 0; 
+	z-index: 13;
 }
 #top-bar .modif{
+	text-align: center;
+	cursor: pointer;
 	margin-top: 15px;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 19px;
-	text-align: center;
 	color: #FFFFFF!important;
-	cursor: pointer;
 	margin-right:20px;
 }
 #top-bar input {
-	margin-top: 5px;
 	cursor: pointer;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
+	vertical-align: auto;
+	text-align: center;
+	background: white;
 	font-weight: 500;
 	font-size: 14px;
-	text-align: center;
 	color: #306685;
 	height: 36px;
 	width: 216px;
-	background: white;
 	border-radius: 60px;
-	vertical-align: auto;
+	margin-top: 5px;
 }
 
 #filterContainer {
@@ -387,6 +677,26 @@ input[type="button"][disabled] {
   }
   
 
+/* Filter class for btn */
 
+.work-item-0 {
+	/* styles for work item with category id Tous */
+	display: none;
+  }
+  
+.work-item-1 {
+	display: none;
+	/* styles for work item with category id Objets */
+  }
 
+.work-item-2 {
+	display: none;
+	/* styles for work item with category id Appartements */
+  }
+
+.work-item-3 {
+	display: none;
+	/* styles for work item with category id Hôtels & Restaurants */
+  }
+  
   /* background-color: #e5e5e5; */
