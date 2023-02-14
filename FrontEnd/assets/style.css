@@ -75,7 +75,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
+	;
 }
 
 h2{
@@ -139,7 +139,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -190,7 +190,7 @@ footer nav ul {
 a {
 	text-decoration: none;
 	color:black;
-   }
+}
 /* --- */
 
 .strong{
@@ -281,12 +281,12 @@ a {
 .mesprojets h2,button{
 	display: inline-block;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 }
 .mesprojets{
 	display:flex;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 }
 .mesprojets button{
 	margin-bottom: 1em;
@@ -320,45 +320,45 @@ a {
 	border-radius: 10px;
 	max-height: 80vh;
 	overflow:auto;
-  }
-  
-  /* Modal Content */
-  .modal-content {
+}
+
+/* Modal Content */
+.modal-content {
 	background-color: #fefefe;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
 	width: 43%;
 	overflow-y: auto;
-  }
-  
-  /* The Close Button */
-  .close {
+}
+
+/* The Close Button */
+.close {
 	color: #aaaaaa;
 	float: right;
 	font-size: 28px;
-  }
-  
-  .close:hover,
-  .close:focus {
+}
+
+.close:hover,
+.close:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
-  }
-  /* The return Button */
-  .return {
+}
+/* The return Button */
+.return {
 	color: #aaaaaa;
 	float: left;
 	font-size: 28px;
-  }
-  
-  .return:hover,
-  .return:focus {
+}
+
+.return:hover,
+.return:focus {
 	color: #000;
 	text-decoration: none;
 	cursor: pointer;
-  }
-  .modal h1{
+}
+.modal h1{
 	margin-top:16px;
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -367,7 +367,7 @@ a {
 	line-height: 30px;
 	text-align: center;
 	color: #000000;
-  }
+}
 .modal .modgallery {
 	width: 67%;
 	display: grid;
@@ -396,8 +396,8 @@ a {
 	height:15px;
 	width:15px;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 	cursor : pointer;
 	font-size : 9px;
 }
@@ -419,17 +419,17 @@ a {
 	height:15px;
 	width:15px;
 	display: flex;
-    justify-content: center;
-    align-items: center;
+	justify-content: center;
+	align-items: center;
 	cursor : pointer;
 	font-size : 9px;
-  }
-  .modal hr{
+}
+.modal hr{
 	width: 67%;
 	border: 1px solid #B3B3B3;
 	margin-top: 47px;
-  }
-  .modal .submit,input[type="submit"]{
+}
+.modal .submit,input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -460,7 +460,7 @@ a {
 	border:0px;
 }
 body.no-scroll {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 #myModal > * {
@@ -528,9 +528,9 @@ body.no-scroll {
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
-  }
-  
-  #myModal .inputlabel {
+}
+
+#myModal .inputlabel {
 	cursor: pointer;
 	display: inline-flex;
 	justify-content: center;
@@ -551,7 +551,7 @@ body.no-scroll {
 	display:flex;
 	flex-direction: column;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 	height: 169px;
 	width: 67%;
 	background: #E8F1F7;
@@ -560,7 +560,7 @@ body.no-scroll {
 #myModal form{
 	display:flex;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 }
 .modal-content .work_info {
 	text-align: left;
@@ -580,7 +580,7 @@ body.no-scroll {
 	content: "\f03e";
 	font-weight:lighter;
 	line-height: 1.2;
-  }
+}
 .uploader .consigne{
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -599,7 +599,7 @@ input[type="button"][disabled] {
 	background: #A7A7A7;
 	cursor: not-allowed;
 	border: 0px;
- }
+}
 
 #top-bar {
 	text-align: center; 
@@ -644,15 +644,35 @@ input[type="button"][disabled] {
 	margin-top: 5px;
 }
 
+/* show only admin */
+.show-only-admin {
+	display: none;
+}
+
+.is-admin .show-only-admin {
+	display: block;
+}
+
+body:not(.connected) .show-only-admin {
+	display: none;
+  }
+
+body.connected .show-only-admin {
+	display: none;
+  }
+  
+  
+
+
 #filterContainer {
 	font-family: 'Syne';
 	display: flex;
 	justify-content: center;
 	gap: 12px;
 	margin: 48px 0;
-  }
-  
-  .filterBtn {
+}
+
+.filterBtn {
 	font-family: 'Syne';
 	color: #1D6154;
 	border: 1px solid #1D6154;
@@ -663,40 +683,47 @@ input[type="button"][disabled] {
 	background-color: white;
 	font-size: 16px;
 	transition: background-color 0.2s;
-  }
-  
-  .filterBtn:hover {
+}
+
+.filterBtn:hover {
 	background-color: #1D6154;
 	color: white;
 	cursor: pointer;
-  }
-  
-  .filterBtn.active {
+}
+
+.filterBtn.active {
 	background-color: #1D6154;
 	color: white;
-  }
-  
+}
+
 
 /* Filter class for btn */
 
 .work-item-0 {
 	/* styles for work item with category id Tous */
 	display: none;
-  }
-  
+}
+
 .work-item-1 {
 	display: none;
 	/* styles for work item with category id Objets */
-  }
+}
 
 .work-item-2 {
 	display: none;
 	/* styles for work item with category id Appartements */
-  }
+}
 
 .work-item-3 {
 	display: none;
 	/* styles for work item with category id Hôtels & Restaurants */
-  }
-  
-  /* background-color: #e5e5e5; */
+}
+
+/* background-color: #e5e5e5; */
+
+body:not(.connected) .show-only-admin{display:none;}
+body.connected .hide-not-admin{display:none;}
+#nav-login{}
+#nav-logout{cursor:pointer;}
+
+/* Background-color: #e5e5e5; */
