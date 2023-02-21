@@ -604,7 +604,6 @@ input[type="button"][disabled] {
 #top-bar {
 	text-align: center; 
 	position: fixed;
-	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	font-family: 'Work Sans';
@@ -721,8 +720,11 @@ body.connected .show-only-admin {
 
 /* background-color: #e5e5e5; */
 
-body:not(.connected) .show-only-admin{display:none;}
-body.connected .hide-not-admin{display:none;}
+.only-guest{display:block;}
+.only-admin{display:none;}
+body.connected .only-guest{display:none;}
+body.connected .only-admin{display:flex;}
+.modal-content-add{display:none;}
 #nav-login{}
 #nav-logout{cursor:pointer;}
 

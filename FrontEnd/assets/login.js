@@ -14,16 +14,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			body: JSON.stringify(data)															// Convert a JS object into a string
 		})
 		.then(function(response) {
-			return response.json();
+			console.log();
+			switch(response.status) {
+				case 500:
+				case 503:
+					alert("Problème côté serveur");
+				break;
+				case 401:
+				case 404:
+					alert("Erreur dans l’identifiant ou le mot de passe");
+				break;
+				case 200:
+					console.log("Authentification réussie");
+					return response.json();
+				break;
+				default:
+					alert("Problème inconnu");
+				break;
+			}
 		})
 		.then(function(json) {
-			if(json.message == "user not found") {
-				alert("Erreur dans l’identifiant ou le mot de passe");
-			} else {
-				sessionStorage.setItem("userId", json.userId);				// https://developer.mozilla.org/fr/docs/Web/API/Window/sessionStorage
-				sessionStorage.setItem("token", json.token);					// Limited = cleared when the page session ends.
-				location.href = "index.html";
-			}
+			sessionStorage.setItem("userId", json.userId);				// https://developer.mozilla.org/fr/docs/Web/API/Window/sessionStorage
+			sessionStorage.setItem("token", json.token);					// Limited = cleared when the page session ends.
+			location.href = "index.html";
 		})
 		.catch((err) => {
 			console.log(err);

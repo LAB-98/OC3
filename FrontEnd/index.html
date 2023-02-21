@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-	<div id="top-bar" class="modifier show-only-admin">
+	<div id="top-bar" class="modifier only-admin">
         <span class="modif"><i class="fa fa-edit"></i> Mode édition</span>
         <input type="button" value="publier les changements">
     </div>
@@ -37,8 +37,8 @@
 			<ul>
 				<li><a class="strong" href="index.html">projets</a></li>
 				<li><a href="index.html#contact">contact</a></li>
-				<li><a id="nav-login" class="hide-not-admin" href="login.html">login</a></li>
-				<li><a id="nav-logout" class="show-only-admin">logout</a></li>
+				<li><a id="nav-login" class="only-guest" href="login.html">login</a></li>
+				<li><a id="nav-logout" class="only-admin">logout</a></li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -47,10 +47,10 @@
 		<section id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
-				<figcaption><button value="Edit" class="modifier" onclick="alert('Fonctionnalité non implémentée')"><i class="fa fa-edit"></i> Modifier</button></figcaption>
+				<figcaption><button value="Edit" class="modifier only-admin" onclick="alert('Fonctionnalité non implémentée')"><i class="fa fa-edit"></i> Modifier</button></figcaption>
 			</figure>
 			<article>
-				<button value="Edit" class="modifier_desc" onclick="alert('Fonctionnalité non implémentée')"><i class="fa fa-edit"></i> Modifier</button>
+				<button value="Edit" class="modifier_desc only-admin" onclick="alert('Fonctionnalité non implémentée')"><i class="fa fa-edit"></i> Modifier</button>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -59,7 +59,7 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
-			<button id="modal-open" value="Edit" class="modifier"><i class="fa fa-edit"></i> Modifier</button>
+			<button id="modal-open" value="Edit" class="modifier only-admin"><i class="fa fa-edit"></i> Modifier</button>
 			<div id="filterContainer"></div> <!-- censé disparaitre après connexion mais fonctionne pas -->
 			<div class="mesprojets">
 				<div class="gallery"></div>
@@ -89,17 +89,44 @@
 </footer>
 <!-- Modal on main -->
 <div id="myModal" class="modal">
+
+
 	<div class="modal-content modal-content-list">
 		<span id="modal-close" class="close">&times;</span>
 		<h2 id="modtitre">Galerie</h2>
-		<form id="modal-form">
+		<div>
 			<div class="modgallery" id="mymodgallery"></div>
 			<hr/>
-			<center><input type="button" class="submit" value="Ajouter une photo"></center>
-			<center><input type="button" class="button" value="Supprimer la galerie"></center>
-		</form>
+			<center><input id="modal-add-photo" type="button" class="submit" value="Ajouter une photo"></center>
+			<center><input id="modal-delete-gallery" type="button" class="button" value="Supprimer la galerie"></center>
+		</div>
 	</div>
 	<div class="modal-content modal-content-add">
+		<span id="modal-close" class="close">&times;</span>
+		<span id="modal-back" class="return"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+		<h2 id="modtitre">Ajout photo</h2>
+		<form id="modal-form">
+			<div class="uploader">
+				<span class="imageup"></span>
+				<input type="file" id="photo" name="photo" class="inputfile" accept=".jpg,.png">
+				<label for="photo" class="inputlabel"><span>+ Ajouter photo</span></label>
+				<span class="consigne">jpg, png : 4mo max</span>
+			</div>
+			<br>
+			<div class="work_info">
+				<label class="labelnormal">Titre</label>
+				<input type="text" id="title" name="title" class="inputnormal">
+			</div>
+			<br>
+			<div class="work_info">
+				<label class="labelnormal">Catégorie</label>
+				<select id="category" name="category">
+				</select>
+			</div>
+			<br>
+			<hr class/>
+			<input class="submit" type="button" value="Valider" id="submit-button">
+		</form>
 	</div>
 </div>
 </body>
