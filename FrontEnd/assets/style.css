@@ -121,9 +121,9 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+.works-container{display:flex;justify-content: center;}
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -278,19 +278,6 @@ a {
 .modifier_desc i{
 	font-size: 17px;
 }
-.mesprojets h2,button{
-	display: inline-block;
-	justify-content: center;
-	align-items: center;
-}
-.mesprojets{
-	display:flex;
-	justify-content: center;
-	align-items: center;
-}
-.mesprojets button{
-	margin-bottom: 1em;
-}
 #portfolio .modifier{
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -320,6 +307,7 @@ a {
 	border-radius: 10px;
 	max-height: 80vh;
 	overflow:auto;
+	border-radius: 10px;
 }
 
 /* Modal Content */
@@ -330,6 +318,7 @@ a {
 	border: 1px solid #888;
 	width: 43%;
 	overflow-y: auto;
+	border-radius: 10px;
 }
 
 /* The Close Button */
@@ -363,7 +352,7 @@ a {
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 400;
-	font-size: 26px;
+	font-size: 20px;
 	line-height: 30px;
 	text-align: center;
 	color: #000000;
@@ -380,27 +369,81 @@ a {
 
 .modgallery img {
 	width: 100%;
-}
-.projet{
 	position: relative;
-	display: inline-block;
+	
+	position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
 }
 
-.projet .delete{
-	color: white;
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	background: #000000;
-	border-radius: 2px;
-	height:15px;
-	width:15px;
+
+
+.modgallery .edit-icon {
+width: 35px;
+height: 14px;
+left: 510px;
+top: 901px;
+border: none;
+background-color: #FFFFFF;
+text-align: center;
+justify-content: left;
+align-self: flex-start;
+
+font-family: 'Work Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+/* identical to box height */
+
+color: #000000;
+
+}
+
+
+.modgallery .delete-icon {
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	cursor : pointer;
-	font-size : 9px;
+	width: 20px;
+	height: 20px;
+	background-color: black;
+	color: white;
+	border-radius: 10%;
+	margin-bottom: 5px;
+	font-size: 12px;
+	box-shadow: none;
+	border: none;
+	outline: none;
 }
+
+.modgallery .move-icon {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 20px;
+	height: 20px;
+	background-color: black;
+	color: white;
+	border-radius: 10%;
+	margin-bottom: 5px;
+	font-size: 12px;
+	box-shadow: none;
+	border: none;
+	outline: none;
+}
+
+
+li {
+list-style-type: none;
+  }
+
+
+
+
 .modal .editer{
 	font-family: 'Work Sans';
 	font-style: normal;
@@ -408,21 +451,6 @@ a {
 	font-size: 12px;
 	line-height: 14px;
 	cursor: pointer;
-}
-.projet .drag-btn {
-	color: white;
-	position: absolute;
-	right: 22px;
-	top: 5px;
-	background: #000000;
-	border-radius: 2px;
-	height:15px;
-	width:15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor : pointer;
-	font-size : 9px;
 }
 .modal hr{
 	width: 67%;
@@ -453,7 +481,7 @@ a {
 	font-style: normal;
 	font-weight: 400;
 	font-size: 14px;
-	line-height: 17px;
+	line-height: 20px;
 	width:100%;
 	margin-top: 23px;
 	color: #D65353;
@@ -468,12 +496,22 @@ body.no-scroll {
 
 }
 #myModal h2{
-	font-family: 'Syne';
+	font-family: 'Work Sans';
 	font-style: normal;
 	margin-top: 60px;
 	font-weight: 700;
 	font-size: 30px;
 	line-height: 36px;
+
+
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 26px;
+	line-height: 30px;
+	text-align: center;
+
+	color: #000000;
 	/* equivalent to box height */
 
 	text-align: center;
@@ -729,3 +767,4 @@ body.connected .only-admin{display:flex;}
 #nav-logout{cursor:pointer;}
 
 /* Background-color: #e5e5e5; */
+  

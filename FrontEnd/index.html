@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
@@ -58,8 +58,10 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
-			<button id="modal-open" value="Edit" class="modifier only-admin"><i class="fa fa-edit"></i> Modifier</button>
+			<div class="works-container">
+				<h2>Mes Projets</h2>
+				<button id="modal-open" value="Edit" class="modifier only-admin"><i class="fa fa-edit"></i> Modifier</button>
+			</div>
 			<div id="filterContainer"></div> <!-- censé disparaitre après connexion mais fonctionne pas -->
 			<div class="mesprojets">
 				<div class="gallery"></div>
@@ -89,43 +91,44 @@
 </footer>
 <!-- Modal on main -->
 <div id="myModal" class="modal">
-
-
 	<div class="modal-content modal-content-list">
-		<span id="modal-close" class="close">&times;</span>
-		<h2 id="modtitre">Galerie</h2>
+		<span class="modal-close">&times;</span>
+		<h2 id="modtitre">Galerie photo</h2>
 		<div>
-			<div class="modgallery" id="mymodgallery"></div>
+			<div id="image-list" class="modgallery"></div>
 			<hr/>
 			<center><input id="modal-add-photo" type="button" class="submit" value="Ajouter une photo"></center>
 			<center><input id="modal-delete-gallery" type="button" class="button" value="Supprimer la galerie"></center>
 		</div>
 	</div>
 	<div class="modal-content modal-content-add">
-		<span id="modal-close" class="close">&times;</span>
+		<span class="modal-close">&times;</span>
 		<span id="modal-back" class="return"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
 		<h2 id="modtitre">Ajout photo</h2>
 		<form id="modal-form">
 			<div class="uploader">
 				<span class="imageup"></span>
-				<input type="file" id="photo" name="photo" class="inputfile" accept=".jpg,.png">
-				<label for="photo" class="inputlabel"><span>+ Ajouter photo</span></label>
+				<input type="file" id="modal-add-work-photo" name="photo" class="inputfile" accept=".jpg,.png">
+				<label for="modal-add-work-photo" class="inputlabel"><span>+ Ajouter photo</span></label>
 				<span class="consigne">jpg, png : 4mo max</span>
 			</div>
 			<br>
 			<div class="work_info">
 				<label class="labelnormal">Titre</label>
-				<input type="text" id="title" name="title" class="inputnormal">
+				<input type="text" id="modal-add-work-title" name="title" class="inputnormal">
 			</div>
 			<br>
 			<div class="work_info">
 				<label class="labelnormal">Catégorie</label>
-				<select id="category" name="category">
+				<select id="modal-add-work-category" name="category">
+					<option>Machin1</option>
+					<option>Machin2</option>
+					<option>Machin3</option>
 				</select>
 			</div>
 			<br>
 			<hr class/>
-			<input class="submit" type="button" value="Valider" id="submit-button">
+			<input class="submit" type="submit" value="Valider" id="modal-add-work">
 		</form>
 	</div>
 </div>
