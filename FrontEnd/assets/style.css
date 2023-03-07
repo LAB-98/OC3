@@ -321,24 +321,15 @@ a {
 	border-radius: 10px;
 }
 
-/* The Close Button */
-.close {
-	color: #aaaaaa;
-	float: right;
-	font-size: 28px;
-}
 
-.close:hover,
-.close:focus {
-	color: #000;
-	text-decoration: none;
-	cursor: pointer;
-}
 /* The return Button */
 .return {
+	position: absolute;
+	left:10px;
+	top:10px;
 	color: #aaaaaa;
 	float: left;
-	font-size: 28px;
+	font-size: 14px;
 }
 
 .return:hover,
@@ -380,25 +371,9 @@ a {
 
 
 .modgallery .edit-icon {
-width: 35px;
-height: 14px;
-left: 510px;
-top: 901px;
-border: none;
-background-color: #FFFFFF;
-text-align: center;
-justify-content: left;
-align-self: flex-start;
-
-font-family: 'Work Sans';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 14px;
-/* identical to box height */
-
-color: #000000;
-
+	border: none;
+	background-color: #FFFFFF;
+	padding: 0;
 }
 
 
@@ -631,13 +606,13 @@ body.no-scroll {
 	margin-bottom: 19px;
 }
 
-
-
 input[type="button"][disabled] {
 	background: #A7A7A7;
 	cursor: not-allowed;
 	border: 0px;
 }
+
+/* Top bar*/
 
 #top-bar {
 	text-align: center; 
@@ -697,9 +672,8 @@ body:not(.connected) .show-only-admin {
 body.connected .show-only-admin {
 	display: none;
   }
-  
-  
 
+/* Filters */
 
 #filterContainer {
 	font-family: 'Syne';
@@ -768,3 +742,8 @@ body.connected .only-admin{display:flex;}
 
 /* Background-color: #e5e5e5; */
   
+
+.modal-content{position:relative;}
+.modal-close{position:absolute;right:10px;top:10px;}
+.work-item-thumbnail{position:relative;text-align: left;}
+.work-item-thumbnail-actions{position: absolute;top: 0;right: 0;display: flex;flex-direction: row-reverse;}
