@@ -92,12 +92,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		let modal = document.getElementById("myModal");
 		modal.style.display = "block";
 
-
 		// Getting existing categories
 		fetch("http://localhost:5678/api/categories")
-		.then(response => response.json())
+		.then(function(response) {
+			console.log();
+			switch(response.status) {
+				case 500:
+					alert("Problème côté serveur");
+				break;
+				case 200:
+					console.log("Authentification réussie");
+					return response.json();
+				break;
+				default:
+					alert("Problème inconnu");
+				break;
+			}})
 		.then(data => {
 			console.log(data);
+			document.getElementById('modal-add-work-category').innerHTML = '';
 			data.forEach(category => {
 				const myOption = document.createElement('option');
 				myOption.textContent = category.name;
@@ -110,6 +123,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		// Getting existing works
 		fetch("http://localhost:5678/api/works")
 		.then(response => response.json())
+		//console.log();
+			//switch(response.status) {
+				//case 500:
+					//alert("Problème côté serveur");
+				//break;
+				//case 200:
+					//console.log("Authentification réussie");
+					//return response.json();
+				//break;
+				//default:
+					//alert("Problème inconnu");
+				//break;
+			//}})
+		
 		.then(data => {
 
 			// Select the list of existing images
@@ -160,11 +187,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
 								// if the API call is successful, remove the work element from the DOM
 								document.getElementById(`work-item-thumbnail-${item.id}`).remove();
 								document.getElementById(`work-item-${item.id}`).remove();
-                
 							} else {
 								throw new Error('Erreur lors de la suppression');
 							}
 						})
+						//.then(function(response) {
+//console.log();
+			//switch(response.status) {
+				//case 500:
+					//alert("Problème côté serveur");
+				//break;
+				//case 401:
+					//alert("Erreur dans l’identifiant ou le mot de passe");
+				//break;
+				//case 200:
+					//console.log("Authentification réussie");
+					//return response.json();
+				//break;
+				//default:
+					//alert("Problème inconnu");
+				//break;
+			//}})
 						.catch(error => console.error(error));
 					}
 				});
@@ -203,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		if(event.target.closest(".modal-content") === null) {
 			let modal = document.getElementById("myModal");
 			modal.style.display = "none";
+			document.getElementById('modal-back').click();
 		}
 	});
 
@@ -211,6 +255,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		closeBtn.addEventListener('click', function(event) {
 			let modal = document.getElementById("myModal");
 			modal.style.display = "none";
+			document.getElementById('modal-back').click();
 		});
 	});
 
@@ -247,10 +292,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		myDiv.appendChild(image);
 	});
 
-
-
-
-
 	// Submitting form
 	document.querySelector('#modal-form').addEventListener("submit", function(event) {
 		event.preventDefault();
@@ -261,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		formData.append('category', Number(document.getElementById('modal-add-work-category').value));
 		formData.append('image', document.getElementById('modal-add-work-photo').files[0]);
 
-		// make a POST request to the API endpoint
+		// Make a POST request to the API endpoint
 		fetch('http://localhost:5678/api/works', {
 			method: 'POST',
 			headers: {
@@ -277,75 +318,45 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				throw new Error('Erreur');
 			}
 		})
+		//.then(function(response) {
+		//console.log();
+			//switch(response.status) {
+				//case 500:
+					//alert("Problème côté serveur");
+				//break;
+				//case 400:
+				//case 401:
+					//alert("Erreur dans l’identifiant ou le mot de passe");
+				//break;
+				//case 201:
+					//console.log("Authentification réussie");
+					//return response.json();
+				//break;
+				//default:
+					//alert("Problème inconnu");
+				//break;
+			//}})
 		.then(data => {
 
 			console.log(data); // {id: 15, title: 'bbb', imageUrl: 'http://localhost:5678/images/blue-700x7001677611393138.jpg', categoryId: '3', userId: 1}
 
-			// createElement, appendChild, etc
+			const myNewFigure = document.createElement('figure');
+			myNewFigure.setAttribute('id', `work-item-${data.id}`);
+			myNewFigure.setAttribute('class', `work-item category-0 category-${data.categoryId}`);
+			document.querySelector('.gallery').appendChild(myNewFigure);
 
-			//  <figure id="work-item-15" class="work-item category-0 category-3">
-			//  	<img src="http://localhost:5678/images/blue-700x7001677611393138.jpg" alt="bbb" crossorigin="anonymous">
-			//  	<figcaption>bbb</figcaption>
-			//  </figure>
+			const myNewImage = document.createElement('img');
+			myNewImage.setAttribute('src', data.imageUrl);
+			myNewImage.setAttribute('alt', `work-item-${data.title}`);
+			myNewImage.setAttribute('crossorigin', `anonymous`);
+			myNewFigure.appendChild(myNewImage);
 
+			const myNewFigCaption = document.createElement('figcaption');
+			myNewFigCaption.textContent = data.title;
+			myNewFigure.appendChild(myNewFigCaption);
 
-
-
-
-
-
-			// // create a new work element based on the response data
-			// const newWorkElement = document.createElement('div');
-			// newWorkElement.classList.add('work');
-			// newWorkElement.innerHTML = `
-			// 	<h2>${data.title}</h2>
-			// 	<p>${data.description}</p>
-			// `;
-			// // add the new work element to the DOM
-			// const workList = document.getElementById('work-list');
-			// workList.appendChild(newWorkElement);
-
+			document.querySelector('.modal-close').click();
 		})
 		.catch(error => console.error(error));
 	});
 });
-
-// Create a work object with the necessary properties
-const newWork = {
-  title: "Nouvel élément",
-  description: "Description du nouvel élément",
-  completed: false
-};
-
-// Make a POST request to add the work
-fetch('http://localhost:5678/api/works/', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-  },
-  body: JSON.stringify(newWork)
-})
-.then(response => {
-  if(response.ok) {
-    return response.json(); // Extract the JSON data from the response
-  } else {
-    throw new Error('Erreur lors de l\'ajout du work');
-  }
-})
-.then(data => {
-  // Create a new HTML element to display the new work
-  const newWorkItem = document.createElement('div');
-  newWorkItem.id = `work-item-${data.id}`;
-  newWorkItem.className = 'work-item';
-  newWorkItem.innerHTML = `
-    <h3>${data.title}</h3>
-    <p>${data.description}</p>
-    <p>Terminé: ${data.completed ? 'Oui' : 'Non'}</p>
-  `;
-  
-  // Add the new element to the list
-  const workList = document.getElementById('work-list');
-  workList.appendChild(newWorkItem);
-})
-.catch(error => console.error(error));
