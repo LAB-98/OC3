@@ -1,70 +1,97 @@
 fetch("http://localhost:5678/api/works")
-.then((response) => response.json())
+.then(function(response) {
+    switch(response.status) {
+        case 500:
+        case 503:
+            alert("Problème côté serveur");
+        break;
+        case 200:
+            console.log("Authentification réussie");
+            return response.json();
+        break;
+        default:
+            alert("Problème inconnu");
+        break;
+    }
+})
 .then((json) => {
 
-	// Handling works
-	let works = json;
-	let categories = [];
-	let alreadyAddedCategoriesIds = [];
-	categories.push({id: 0, name: 'Tous'});
-	works.forEach((work, index) => {
+    // Handling works
+    let works = json;
+    let categories = [];
+    let alreadyAddedCategoriesIds = [];
+    categories.push({id: 0, name: 'Tous'});
+    works.forEach((work, index) => {
 
-		//console.log('======================');
-		//console.log(work);
-		//console.log(work.category.id);
-		//console.log(work.category.name);
+        //console.log('======================');
+        //console.log(work);
+        //console.log(work.category.id);
+        //console.log(work.category.name);
 
-		// Creating HTML for works
-		let myFigure = document.createElement('figure');
-		myFigure.setAttribute('id', `work-item-${work.id}`);
-		myFigure.classList.add(`work-item`);
-		myFigure.classList.add(`category-0`);
-		myFigure.classList.add(`category-${work.category.id}`);
-		let myImage = document.createElement('img');
-		myImage.setAttribute('src', work.imageUrl);
-		myImage.setAttribute('alt', work.title);
-		myImage.setAttribute('crossorigin', 'anonymous');
-		let myFigureCaption = document.createElement('figcaption');
-		myFigureCaption.textContent = work.title;
-		myFigure.appendChild(myImage);
-		myFigure.appendChild(myFigureCaption);
-		document.querySelector("#portfolio .mesprojets .gallery").appendChild(myFigure);
+        // Creating HTML for works
+        let myFigure = document.createElement('figure');
+        myFigure.setAttribute('id', `work-item-${work.id}`);
+        myFigure.classList.add(`work-item`);
+        myFigure.classList.add(`category-0`);
+        myFigure.classList.add(`category-${work.category.id}`);
+        let myImage = document.createElement('img');
+        myImage.setAttribute('src', work.imageUrl);
+        myImage.setAttribute('alt', work.title);
+        myImage.setAttribute('crossorigin', 'anonymous');
+        let myFigureCaption = document.createElement('figcaption');
+        myFigureCaption.textContent = work.title;
+        myFigure.appendChild(myImage);
+        myFigure.appendChild(myFigureCaption);
+        document.querySelector("#portfolio .mesprojets .gallery").appendChild(myFigure);
 
-		// Getting all categories from works
-		if(alreadyAddedCategoriesIds.includes(work.category.id) === false) {
-			categories.push(work.category);
-			alreadyAddedCategoriesIds.push(work.category.id);
-		}
-	});
+        // Getting all categories from works
+        if(alreadyAddedCategoriesIds.includes(work.category.id) === false) {
+            categories.push(work.category);
+            alreadyAddedCategoriesIds.push(work.category.id);
+        }
+    });
 
-	// Creating HTML for categories
-	console.log(categories);
-	categories.forEach((category, index) => {
-		console.log(category);
-		let myButton = document.createElement('button');
-		myButton.setAttribute('class', 'filterBtn');
-		myButton.setAttribute('data-filter', `category-${category.id}`);
-		myButton.textContent = category.name;
-		document.querySelector("#filterContainer").appendChild(myButton);
-	});
+    // Creating HTML for categories
+    console.log(categories);
+    categories.forEach((category, index) => {
+        console.log(category);
+        let myButton = document.createElement('button');
 
-	// Detecting click on filters
-	document.querySelectorAll('.filterBtn').forEach(filterButton => {
-		filterButton.addEventListener('click', function(event) {
-			let filterValue = this.getAttribute('data-filter');
-			document.querySelectorAll('.work-item').forEach(workItem => {
-				if(!workItem.classList.contains(filterValue)) {
-					workItem.style.display = 'none';
-				} else {
-					workItem.style.display = '';
-				}
-			});
-		});
-	});
+        if(category.id === 0) {
+            myButton.setAttribute('class', 'filterBtn active');
+        }
+        else {
+            myButton.setAttribute('class', 'filterBtn');
+        }
+        myButton.setAttribute('data-filter', `category-${category.id}`);
+        myButton.textContent = category.name;
+        document.querySelector("#filterContainer").appendChild(myButton);
+
+        // Detecting click on filters
+        myButton.addEventListener('click', function(event) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.filterBtn').forEach(filterButton => {
+                filterButton.classList.remove('active');
+            });
+            // Add active class to clicked button
+            myButton.classList.add('active');
+
+            let filterValue = this.getAttribute('data-filter');
+            document.querySelectorAll('.work-item').forEach(workItem => {
+                if(!workItem.classList.contains(filterValue)) {
+                    workItem.style.display = 'none';
+                } else {
+                    workItem.style.display = '';
+                }
+            });
+        });
+    });
+
 })
 .catch(err => {
-	console.log(err);
+    console.log(err);
 });
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
@@ -122,21 +149,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 		// Getting existing works
 		fetch("http://localhost:5678/api/works")
-		.then(response => response.json())
-		//console.log();
-			//switch(response.status) {
-				//case 500:
-					//alert("Problème côté serveur");
-				//break;
-				//case 200:
-					//console.log("Authentification réussie");
-					//return response.json();
-				//break;
-				//default:
-					//alert("Problème inconnu");
-				//break;
-			//}})
-		
+		.then(function(response) {
+			switch(response.status) {
+				case 500:
+					alert("Problème côté serveur");
+				break;
+				case 200:
+					return response.json();
+				break;
+				default:
+					alert("Problème inconnu");
+				break;
+			}
+		})
 		.then(data => {
 
 			// Select the list of existing images
@@ -182,32 +207,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 								'Authorization': 'Bearer ' + sessionStorage.getItem('token')
 							}
 						})
-						.then(response => {
-							if(response.ok) {
-								// if the API call is successful, remove the work element from the DOM
-								document.getElementById(`work-item-thumbnail-${item.id}`).remove();
-								document.getElementById(`work-item-${item.id}`).remove();
-							} else {
-								throw new Error('Erreur lors de la suppression');
+						.then(function(response) {
+							switch(response.status) {
+								case 500:
+									alert("Problème côté serveur");
+								break;
+								case 401:
+									alert("Opération non permise");
+								break;
+								case 200:
+								case 204:
+									// if the API call is successful, remove the work element from the DOM
+									document.getElementById(`work-item-thumbnail-${item.id}`).remove();
+									document.getElementById(`work-item-${item.id}`).remove();
+								break;
+								default:
+									alert("Problème inconnu");
+								break;
 							}
 						})
-						//.then(function(response) {
-//console.log();
-			//switch(response.status) {
-				//case 500:
-					//alert("Problème côté serveur");
-				//break;
-				//case 401:
-					//alert("Erreur dans l’identifiant ou le mot de passe");
-				//break;
-				//case 200:
-					//console.log("Authentification réussie");
-					//return response.json();
-				//break;
-				//default:
-					//alert("Problème inconnu");
-				//break;
-			//}})
 						.catch(error => console.error(error));
 					}
 				});
@@ -269,6 +287,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	document.getElementById("modal-add-photo").addEventListener("click", function(event) {
 		document.querySelector(".modal-content-list").style.display = "none";
 		document.querySelector(".modal-content-add").style.display = "block";
+
+		document.getElementById('modal-add-work-title').value = ''
+		document.getElementById('modal-add-work-category').selectedIndex = 0;
+		document.getElementById('output').remove()
+		document.querySelector('.uploader-ctn').style.display = 'flex';
 	});
 
 	// Detecting photo click on move
@@ -283,12 +306,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		image.setAttribute('id','output');
 		image.setAttribute('style','width:35%;height:100%;');
 		image.src = URL.createObjectURL(event.target.files[0]);
+
+		document.querySelector('.uploader-ctn').style.display = 'none';
+		/*
 		let mySpan = document.getElementsByClassName('imageup')[0];
 		mySpan.parentNode.removeChild(mySpan);
 		mySpan = document.getElementsByClassName('consigne')[0];
 		mySpan.parentNode.removeChild(mySpan);
 		let myLabel = document.getElementsByClassName('inputlabel')[0];
 		myLabel.parentNode.removeChild(myLabel);
+		*/
+
 		myDiv.appendChild(image);
 	});
 
@@ -310,32 +338,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			},
 			body: formData,
 		})
-		.then(response => {
-			if (response.ok) {
-				// if the API call is successful, parse the response as JSON
-				return response.json();
-			} else {
-				throw new Error('Erreur');
+		.then(function(response) {
+			switch(response.status) {
+				case 500:
+					alert("Problème côté serveur");
+				break;
+				case 400:
+					alert("Données incorrectes / incomplètes");
+				break;
+				case 401:
+					alert("Opération non permise");
+				break;
+				case 201:
+					return response.json();
+				break;
+				default:
+					alert("Problème inconnu");
+				break;
 			}
 		})
-		//.then(function(response) {
-		//console.log();
-			//switch(response.status) {
-				//case 500:
-					//alert("Problème côté serveur");
-				//break;
-				//case 400:
-				//case 401:
-					//alert("Erreur dans l’identifiant ou le mot de passe");
-				//break;
-				//case 201:
-					//console.log("Authentification réussie");
-					//return response.json();
-				//break;
-				//default:
-					//alert("Problème inconnu");
-				//break;
-			//}})
 		.then(data => {
 
 			console.log(data); // {id: 15, title: 'bbb', imageUrl: 'http://localhost:5678/images/blue-700x7001677611393138.jpg', categoryId: '3', userId: 1}
@@ -360,3 +381,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		.catch(error => console.error(error));
 	});
 });
+
+function checkNewProjectFields() {
+    const imageInput = document.getElementById('modal-add-work-photo');
+    const titleInput = document.getElementById('modal-add-work-title');
+    const categoryInput = document.getElementById('modal-add-work-category');
+    const submitButton = document.querySelector('#modal-form button[type="submit"]');
+
+    if (imageInput.files.length === 0 || titleInput.value.trim() === '' || categoryInput.value.trim() === '') {
+        submitButton.setAttribute('disabled', true);
+        submitButton.classList.add('disabled');
+    } else {
+        submitButton.removeAttribute('disabled');
+        submitButton.classList.remove('disabled');
+    }
+}
+// Then add the event listeners to the relevant fields
+document.getElementById('modal-add-work-photo').addEventListener('input', checkNewProjectFields);
+document.getElementById('modal-add-work-photo').addEventListener('change', checkNewProjectFields);
+document.getElementById('modal-add-work-title').addEventListener('input', checkNewProjectFields);
+document.getElementById('modal-add-work-title').addEventListener('change', checkNewProjectFields);
+document.getElementById('modal-add-work-category').addEventListener('input', checkNewProjectFields);
+document.getElementById('modal-add-work-category').addEventListener('change', checkNewProjectFields);
+
+checkNewProjectFields();
+// ... Flûte, ça marche pas, je dois placer le reste du code ?
