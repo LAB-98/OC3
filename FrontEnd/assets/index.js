@@ -382,6 +382,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	});
 });
 
+// Code prise de tête Bouton Valider
 function checkNewProjectFields() {
     const imageInput = document.getElementById('modal-add-work-photo');
     const titleInput = document.getElementById('modal-add-work-title');
