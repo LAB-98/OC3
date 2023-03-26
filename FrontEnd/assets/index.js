@@ -86,7 +86,6 @@ fetch("http://localhost:5678/api/works")
             });
         });
     });
-
 })
 .catch(err => {
     console.log(err);
@@ -137,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 			}})
 		.then(data => {
 			console.log(data);
-			document.getElementById('modal-add-work-category').innerHTML = '';
+			document.getElementById('modal-add-work-category').innerHTML = '<option value=""></option>';
 			data.forEach(category => {
 				const myOption = document.createElement('option');
 				myOption.textContent = category.name;
@@ -195,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 				deleteButton.setAttribute('class', 'delete-icon fa fa-trash');
 				deleteButton.setAttribute('data-id', item.id);
 				deleteButton.addEventListener('click', function(event) {
-					// @todo2
 					let result = confirm("Want to delete?");
 					if(result) {
 						// Delete the item
@@ -290,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 		document.getElementById('modal-add-work-title').value = ''
 		document.getElementById('modal-add-work-category').selectedIndex = 0;
-		document.getElementById('output').remove()
+		if(document.getElementById('output') != null) document.getElementById('output').remove();
 		document.querySelector('.uploader-ctn').style.display = 'flex';
 	});
 
@@ -380,30 +378,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		})
 		.catch(error => console.error(error));
 	});
+
+	// Adding the event listeners to the relevant fields for handling validate button
+	document.getElementById('modal-add-work-photo').addEventListener('change', checkNewProjectFields);
+	document.getElementById('modal-add-work-title').addEventListener('change', checkNewProjectFields);
+	document.getElementById('modal-add-work-category').addEventListener('change', checkNewProjectFields);
+	function checkNewProjectFields() {
+	    const imageInput = document.getElementById('modal-add-work-photo');
+	    const titleInput = document.getElementById('modal-add-work-title');
+	    const categoryInput = document.getElementById('modal-add-work-category');
+	    const submitButton = document.getElementById('modal-add-work');
+
+	    if (imageInput.files.length === 0 || titleInput.value.trim() === '' || categoryInput.value.trim() === '') {
+	        submitButton.setAttribute('disabled', true);
+	        submitButton.classList.add('disabled');
+	    } else {
+	        submitButton.removeAttribute('disabled');
+	        submitButton.classList.remove('disabled');
+	    }
+	}
 });
-
-// Code prise de tête Bouton Valider
-function checkNewProjectFields() {
-    const imageInput = document.getElementById('modal-add-work-photo');
-    const titleInput = document.getElementById('modal-add-work-title');
-    const categoryInput = document.getElementById('modal-add-work-category');
-    const submitButton = document.querySelector('#modal-form button[type="submit"]');
-
-    if (imageInput.files.length === 0 || titleInput.value.trim() === '' || categoryInput.value.trim() === '') {
-        submitButton.setAttribute('disabled', true);
-        submitButton.classList.add('disabled');
-    } else {
-        submitButton.removeAttribute('disabled');
-        submitButton.classList.remove('disabled');
-    }
-}
-// Then add the event listeners to the relevant fields
-document.getElementById('modal-add-work-photo').addEventListener('input', checkNewProjectFields);
-document.getElementById('modal-add-work-photo').addEventListener('change', checkNewProjectFields);
-document.getElementById('modal-add-work-title').addEventListener('input', checkNewProjectFields);
-document.getElementById('modal-add-work-title').addEventListener('change', checkNewProjectFields);
-document.getElementById('modal-add-work-category').addEventListener('input', checkNewProjectFields);
-document.getElementById('modal-add-work-category').addEventListener('change', checkNewProjectFields);
-
-checkNewProjectFields();
-// ... Flûte, ça marche pas, je dois placer le reste du code ?

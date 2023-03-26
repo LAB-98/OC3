@@ -187,7 +187,9 @@ input[type="submit"]{
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	padding: 2em;
+	background: #fff;
+	margin-top: 2em;
 }
 
 footer nav ul li {
@@ -306,16 +308,15 @@ a {
 	display: none; 
 	position: fixed; 
 	z-index: 1;
-	padding-top: 10%; 
+	padding-top: 10vh;
 	left: 0;
 	top: 0;
 	width: 100%; 
-	height: 110%; 
+	height: 100vh;
 	overflow: auto; 
 	background-color: rgb(0,0,0); 
 	background-color: rgba(0,0,0,0.3); 
 	border-radius: 10px;
-	max-height: 82vh;
 	overflow:auto;
 	border-radius: 10px;
 }
@@ -324,11 +325,12 @@ a {
 .modal-content {
 	background-color: #fefefe;
 	margin: auto;
-	padding: 20px;
+	padding: 19px;
 	border: 1px solid #888;
-	width: 43%;
+	width: 80%;
 	overflow-y: auto;
 	border-radius: 10px;
+	max-width: 630px;
 }
 
 /* The return Button */
@@ -358,13 +360,10 @@ a {
 	color: #000000;
 }
 .modal .modgallery {
-	width: 67%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 5px;
 	grid-row-gap: 15px;
-	margin: auto;
-	margin-top: 46px;
 }
 
 .modgallery img {
@@ -381,6 +380,7 @@ a {
 	border: none;
 	background-color: #FFFFFF;
 	padding: 0;
+	font-size: 13px;
 }
 
 /* ######################## */
@@ -417,9 +417,11 @@ list-style-type: none;
 	cursor: pointer;
 }
 .modal hr{
-	width: 67%;
 	border: 1px solid #B3B3B3;
 	margin-top: 47px;
+	visibility: visible;
+	width: 420px;
+	
 }
 .modal .submit,input[type="submit"]{
 	font-family: 'Syne';
@@ -463,12 +465,10 @@ body.no-scroll {
 #myModal h2{
 	font-family: 'Work Sans';
 	font-style: normal;
-	margin-top: 60px;
+	margin-top: 40px;
 	font-weight: 700;
 	font-size: 30px;
 	line-height: 36px;
-
-
 	font-family: 'Work Sans';
 	font-style: normal;
 	font-weight: 400;
@@ -521,9 +521,9 @@ body.no-scroll {
 	padding: 0px 16px;
 }
 
-/* ############ Me duele la cabeza ############ */
+/* ######################## */
 /* Styles for the button when it is active (non-disabled) */
-#myModal .addwork button[type="submit"] {
+#modal-add-work {
     background-color: #1D6154;; /* Active button background color */
     color: white; /* Active button text color */
     cursor: pointer; /* Cursor changes to hand on hover */
@@ -534,7 +534,7 @@ body.no-scroll {
 }
 
 /* Styles for the button when it is disabled */
-#myModal .addwork button[type="submit"].disabled {
+#modal-add-work.disabled {
     background-color: #A7A7A7; /* Disabled button background color */
     color: #ffffff; /* Disabled button text color */
     cursor: not-allowed; /* Cursor indicates the button is disabled */
@@ -683,7 +683,7 @@ body.connected .show-only-admin {
 	display: none;
   }
 
-/* Filters */
+/* ############ Filters ############ */
 
 #filterContainer {
 	font-family: 'Syne';
@@ -691,6 +691,7 @@ body.connected .show-only-admin {
 	justify-content: center;
 	gap: 12px;
 	margin: 48px 0;
+	flex-wrap: wrap;
 }
 
 .filterBtn {
@@ -704,6 +705,7 @@ body.connected .show-only-admin {
 	background-color: white;
 	font-size: 16px;
 	transition: background-color 0.2s;
+	cursor:pointer;
 }
 
 .filterBtn.active {
@@ -738,7 +740,6 @@ body.connected .show-only-admin {
 body.connected .only-guest{display:none;}
 body.connected .only-admin{display:flex;}
 .modal-content-add{display:none;}
-#nav-login{}
 #nav-logout{cursor:pointer;}
 
 .modal-content{position:relative;}
@@ -746,3 +747,20 @@ body.connected .only-admin{display:flex;}
 .work-item-thumbnail{position:relative;text-align: left;}
 .work-item-thumbnail-actions{position: absolute;top: 0;right: 0;display: flex;flex-direction: row-reverse;}
 
+/* ############ Media Queries ############# */
+
+@media (max-width:1280px) {
+	.modal .modgallery {margin-top: 15px;}
+	.modal hr {margin-top: 20px; max-width: 420px;}
+	#modal-add-photo{margin-top: 10px;}
+	#modal-delete-gallery{margin-top: 10px;}
+}
+
+@media (max-width:782px) {
+	.modal hr {margin-top: 20px; max-width: 400px;}
+}
+
+.gallery-ctn{
+	margin: 30px auto 0;
+	max-width: 400px;
+}
